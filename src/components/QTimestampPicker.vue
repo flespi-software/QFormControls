@@ -1,0 +1,106 @@
+<template>
+  <div class="inline-block fit">
+    <q-input outlined dense v-model="datetime" @focus="focusemit" :disable="disable" readonly :label="label" :suffix="suffix" :color="color">
+      <template v-slot:append>
+        <q-icon name="event" class="cursor-pointer" @click="show" :color="color">
+        </q-icon>
+      </template>
+    </q-input>
+    <q-dialog v-model="showdialog" :maximized="$q.platform.is.mobile" persistent transition-show="scale" transition-hide="scale">
+      <q-card class="q-pa-none">
+        <q-card-section class="q-pa-none">
+          <div :class="`bg-${color} absolute-top-left absolute-top-right`" style="min-height:86px" />
+          <div class="row items-start">
+            <q-carousel
+              v-model="slide"
+              transition-prev="slide-right"
+              transition-next="slide-left"
+              swipeable
+              animated
+              class="fit bg-transparent"
+            >
+              <q-carousel-slide name="date" class="row justify-center content-center q-pa-none fit">
+                <q-date style="max-width:290px" flat square v-model="proxydatetime" :mask="format" @input="slide='time'" :color="color" />
+              </q-carousel-slide>
+              <q-carousel-slide name="time" class="row justify-center content-center q-pa-none fit">
+                <q-time style="max-width:290px" flat square v-model="proxydatetime" :mask="format" format24h :color="color" />
+              </q-carousel-slide>
+            </q-carousel>
+          </div>
+          <div class="row items-center justify-end q-pa-sm">
+            <q-btn-toggle
+              dark
+              v-model="slide"
+              color="grey-6"
+              :toggle-color="color"
+              flat
+              :options="[
+                {value: 'date', icon: 'mdi-calendar'},
+                {value: 'time', icon: 'mdi-clock-outline'}
+              ]"
+            />
+            <q-space />
+            <q-btn label="Cancel" :color="color" flat v-close-popup />
+            <q-btn label="OK" :color="color" flat @click="save" v-close-popup />
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+  </div>
+</template>
+
+<script>
+import { date } from 'quasar'
+
+export default {
+  name: 'QTimestampPicker',
+  props: {
+    value: {
+      type: Number,
+      default: Date.now()
+    },
+    disable: [Boolean],
+    label: [String],
+    suffix: [String],
+    format: {
+      type: String,
+      default: 'YYYY-MM-DD HH:mm:ss'
+    },
+    color: {
+      type: String,
+      default: 'primary'
+    }
+  },
+  data () {
+    return {
+      datetime: date.formatDate(this.value ? (this.value) : Date.now(), this.format),
+      proxydatetime: '',
+      showdialog: false,
+      slide: 'date'
+    }
+  },
+  methods: {
+    show() {
+      this.slide = 'date'
+      this.showdialog = true
+      this.updateProxy()
+    },
+    input (val) {
+      this.$emit('input', parseInt(val / 1000))
+    },
+    focusemit (evt) {
+      this.$emit('focus', evt)
+    },
+    updateProxy () {
+      this.proxydatetime = this.datetime
+    },
+    save () {
+      this.datetime = this.proxydatetime
+      this.$emit('input', parseInt(date.formatDate(date.extractDate(this.datetime, this.format).getTime(), 'x')))
+    }
+  }
+}
+</script>
+
+<style lang="stylus">
+</style>

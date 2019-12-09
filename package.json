@@ -1,0 +1,22 @@
+{
+  "name": "qtimestamppicker",
+  "version": "1.0.0",
+  "description": "vue (quasar 1.x) timestamp form component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:flespi-software/QTimestampPicker.git"
+  },
+  "keywords": [
+    "form",
+    "timestamp",
+    "input",
+    "vue",
+    "quasar"
+  ],
+  "author": "Evgenij Spitsyn evgeniy@spitsyn.net",
+  "license": "MIT"
+}
