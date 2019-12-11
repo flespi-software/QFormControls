@@ -1,12 +1,12 @@
 <template>
   <div class="inline-block fit">
-    <q-input outlined dense v-model="datetime" @focus="focusemit" :disable="disable" readonly :label="label" :suffix="suffix" :color="color">
+    <q-input outlined dense v-model="datetime" @focus="focusemit" :disable="disable" readonly :label="label" :suffix="suffix" :color="color" :error="error">
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer" @click="show" :color="color">
         </q-icon>
       </template>
     </q-input>
-    <q-dialog v-model="showdialog" :maximized="$q.platform.is.mobile" persistent transition-show="scale" transition-hide="scale">
+    <q-dialog v-model="showdialog" :maximized="autoMaximized && $q.platform.is.mobile" persistent transition-show="scale" transition-hide="scale">
       <q-card class="q-pa-none">
         <q-card-section class="q-pa-none">
           <div :class="`bg-${color} absolute-top-left absolute-top-right`" style="min-height:86px" />
@@ -69,6 +69,15 @@ export default {
     color: {
       type: String,
       default: 'primary'
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    // maximized for mobile view
+    autoMaximized: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
