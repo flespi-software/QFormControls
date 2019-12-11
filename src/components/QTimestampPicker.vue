@@ -72,7 +72,7 @@ export default {
     },
     error: {
       type: Boolean,
-      default: false
+      default: undefined
     },
     // maximized for mobile view
     autoMaximized: {
