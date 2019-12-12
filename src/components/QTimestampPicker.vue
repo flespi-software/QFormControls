@@ -20,7 +20,7 @@
               class="fit bg-transparent"
             >
               <q-carousel-slide name="date" class="row justify-center content-center q-pa-none fit">
-                <q-date style="max-width:290px" flat square v-model="proxydatetime" :mask="format" @input="slide='time'" :color="color" />
+                <q-date style="max-width:290px" flat square v-model="proxydatetime" :mask="format" @input="slide='time'" :color="color" :options="checkDay" />
               </q-carousel-slide>
               <q-carousel-slide name="time" class="row justify-center content-center q-pa-none fit">
                 <q-time style="max-width:290px" flat square v-model="proxydatetime" :mask="format" format24h :color="color" />
@@ -78,7 +78,9 @@ export default {
     autoMaximized: {
       type: Boolean,
       default: true
-    }
+    },
+    // filter dates (disabled days)
+    dateOptionsFn: [Function]
   },
   data () {
     return {
@@ -106,6 +108,12 @@ export default {
     save () {
       this.datetime = this.proxydatetime
       this.$emit('input', parseInt(date.formatDate(date.extractDate(this.datetime, this.format).getTime(), 'x')))
+    },
+    // "options" - func for date-picker
+    checkDay (d) {
+      return this.dateOptionsFn
+        ? this.dateOptionsFn(date.extractDate(d, 'YYYY/MM/DD'))
+        : true
     }
   }
 }
