@@ -2,8 +2,7 @@
   <div class="inline-block fit">
     <q-input outlined dense v-model="datetime" @focus="focusemit" :disable="disable" readonly :label="label" :suffix="suffix" :color="color" :error="error">
       <template v-slot:append>
-        <q-icon name="event" class="cursor-pointer" @click="show" :color="color">
-        </q-icon>
+        <q-icon name="mdi-calendar" class="cursor-pointer" @click="show" :color="color" />
       </template>
     </q-input>
     <q-dialog v-model="showdialog" :maximized="autoMaximized && $q.platform.is.mobile" persistent transition-show="scale" transition-hide="scale">

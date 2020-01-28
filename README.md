@@ -15,10 +15,13 @@ QTimestampPicker:
     :value="timestamp"
     @input="setTimestamp"
 
+    :date-options-fn="funcFilterDay"
+    :auto-maximized="false"
     label="label"
     format="YYYY-MM-DD HH:mm:ss"
     color="orange"
 
+    :error="isError"
     :disable="false"
     @focus="focus"
   />
