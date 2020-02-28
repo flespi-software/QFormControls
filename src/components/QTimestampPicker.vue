@@ -22,7 +22,16 @@
                 <q-date style="max-width:290px" flat square v-model="proxydatetime" :mask="format" @input="slide='time'" :color="color" :options="checkDay" />
               </q-carousel-slide>
               <q-carousel-slide name="time" class="row justify-center content-center q-pa-none fit">
-                <q-time style="max-width:290px" flat square v-model="proxydatetime" :mask="format" format24h :color="color" />
+                <q-time
+                  style="max-width:290px"
+                  flat
+                  square
+                  v-model="proxydatetime"
+                  :mask="format"
+                  format24h
+                  :color="color"
+                  @click.prevent.capture
+                />
               </q-carousel-slide>
             </q-carousel>
           </div>
