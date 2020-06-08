@@ -1,6 +1,18 @@
 <template>
   <div class="inline-block fit">
-    <q-input outlined dense v-model="datetime" @focus="focusemit" :disable="disable" readonly :label="label" :suffix="suffix" :color="color" :error="error">
+    <q-input
+      outlined
+      dense
+      v-model="datetime"
+      @focus="focusemit"
+      @click="show"
+      :disable="disable"
+      readonly
+      :label="label"
+      :suffix="suffix"
+      :color="color"
+      :error="error"
+      >
       <template v-slot:append>
         <q-icon name="mdi-calendar" class="cursor-pointer" @click="show" :color="color" />
       </template>
@@ -100,9 +112,11 @@ export default {
   },
   methods: {
     show() {
-      this.slide = 'date'
-      this.showdialog = true
-      this.updateProxy()
+      if (!this.disable) {
+        this.slide = 'date'
+        this.showdialog = true
+        this.updateProxy()
+      }
     },
     input (val) {
       this.$emit('input', parseInt(val / 1000))

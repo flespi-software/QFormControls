@@ -10,6 +10,7 @@ $ npm install git+https://github.com/flespi-software/QFormControls.git --save
 
 ## Example:
 QTimestampPicker:
+> import {QTimestampPicker} from 'qformcontrols'
 ````vue
   <QTimestampPicker
     :value="timestamp"
