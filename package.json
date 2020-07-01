@@ -1,6 +1,6 @@
 {
   "name": "qformcontrols",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "vue (quasar 1.x) form components",
   "main": "index.js",
   "scripts": {

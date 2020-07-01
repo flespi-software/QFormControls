@@ -17,7 +17,12 @@
         <q-icon name="mdi-calendar" class="cursor-pointer" @click="show" :color="color" />
       </template>
     </q-input>
-    <q-dialog v-model="showdialog" :maximized="autoMaximized && $q.platform.is.mobile" persistent transition-show="scale" transition-hide="scale">
+    <q-dialog
+      v-model="showdialog"
+      :maximized="autoMaximized && $q.platform.is.mobile"
+      no-backdrop-dismiss
+      transition-show="scale"
+      transition-hide="scale">
       <q-card class="q-pa-none">
         <q-card-section class="q-pa-none">
           <div :class="`bg-${color} absolute-top-left absolute-top-right`" style="min-height:86px" />
