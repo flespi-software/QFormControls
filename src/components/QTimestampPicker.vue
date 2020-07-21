@@ -19,6 +19,8 @@
     </q-input>
     <q-dialog
       v-model="showdialog"
+      @show="onDialogShow"
+      @hide="onDialogHide"
       :maximized="autoMaximized && $q.platform.is.mobile"
       no-backdrop-dismiss
       transition-show="scale"
@@ -141,6 +143,14 @@ export default {
       return this.dateOptionsFn
         ? this.dateOptionsFn(date.extractDate(d, 'YYYY/MM/DD'))
         : true
+    },
+    // dialog show handler
+    onDialogShow () {
+      this.$emit('toggle', true)
+    },
+    // dialog hide handler
+    onDialogHide (v) {
+      this.$emit('toggle', false)
     }
   }
 }
