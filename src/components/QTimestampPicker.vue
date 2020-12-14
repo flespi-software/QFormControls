@@ -38,7 +38,17 @@
               class="fit bg-transparent"
             >
               <q-carousel-slide name="date" class="row justify-center content-center q-pa-none fit">
-                <q-date style="max-width:290px" flat square v-model="proxydatetime" :mask="format" @input="slide='time'" :color="color" :options="checkDay" />
+                <q-date
+                  style="max-width:290px"
+                  flat
+                  square
+                  v-model="proxydatetime"
+                  :mask="format"
+                  @input="slide='time'"
+                  :color="color"
+                  :options="checkDay"
+                  no-unset
+                />
               </q-carousel-slide>
               <q-carousel-slide name="time" class="row justify-center content-center q-pa-none fit">
                 <q-time
