@@ -58,6 +58,7 @@
                   v-model="proxydatetime"
                   :mask="format"
                   format24h
+                  with-seconds
                   :color="color"
                   @click.prevent.capture
                 />

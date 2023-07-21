@@ -59,6 +59,7 @@
                   :mask="format"
                   format24h
                   :color="color"
+                  with-seconds
                   @click.prevent.capture
                 />
               </q-carousel-slide>
