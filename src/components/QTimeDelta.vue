@@ -59,7 +59,7 @@
                   :mask="format"
                   format24h
                   :color="color"
-                  with-seconds
+                  :with-seconds="withSeconds"
                   @click.prevent.capture
                 />
               </q-carousel-slide>
@@ -118,7 +118,12 @@ export default {
       default: true
     },
     // filter dates (disabled days)
-    dateOptionsFn: [Function]
+    dateOptionsFn: [Function],
+    // time with seconds
+    withSeconds: {
+      type: Boolean,
+      default: true
+    },
   },
   data () {
     return {

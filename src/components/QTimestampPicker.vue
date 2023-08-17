@@ -58,7 +58,7 @@
                   v-model="proxydatetime"
                   :mask="format"
                   format24h
-                  with-seconds
+                  :with-seconds="withSeconds"
                   :color="color"
                   @click.prevent.capture
                 />
@@ -118,7 +118,12 @@ export default {
       default: true
     },
     // filter dates (disabled days)
-    dateOptionsFn: [Function]
+    dateOptionsFn: [Function],
+    // time with seconds
+    withSeconds: {
+      type: Boolean,
+      default: true
+    },
   },
   data () {
     return {
