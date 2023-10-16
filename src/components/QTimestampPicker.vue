@@ -1,6 +1,7 @@
 <template>
   <div class="inline-block fit">
     <q-input
+      v-if="withInput"
       outlined
       dense
       v-model="datetime"
@@ -12,11 +13,21 @@
       :suffix="suffix"
       :color="color"
       :error="error"
-      >
+    >
       <template v-slot:append>
         <q-icon name="mdi-calendar" class="cursor-pointer" @click="show" :color="color" />
       </template>
     </q-input>
+    <q-btn
+      v-else
+      flat
+      outlined
+      dense
+      icon="mdi-calendar"
+      class="cursor-pointer"
+      @click="show"
+      :color="color"
+    />
     <q-dialog
       v-model="showdialog"
       @show="onDialogShow"
@@ -124,6 +135,10 @@ export default {
       type: Boolean,
       default: true
     },
+    withInput: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {
